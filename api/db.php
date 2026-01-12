@@ -2,7 +2,7 @@
 session_start();
 
 class DB{
-    protected $dsn="mysql:host=localhost;charset=utf8;dbname=db12";
+    protected $dsn="mysql:host=localhost;charset=utf8;dbname=db02";
     protected $pdo;
     protected $table;
 
@@ -26,7 +26,7 @@ class DB{
                 $sql .= $arg[1];
             }
 
-            //echo $sql;
+            // echo $sql;
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
     function find($id){
@@ -39,7 +39,7 @@ class DB{
             $sql .= " WHERE `id`='{$id}'";
         }
             
-            //echo $sql;
+            // echo $sql;
 
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
@@ -54,7 +54,7 @@ class DB{
             $sql="INSERT INTO $this->table (`".join("`,`",$cols)."`) VALUES('".join("','",$array)."')";
         }
 
-        //echo $sql;
+        // echo $sql;
         return $this->pdo->exec($sql);
 
     }
@@ -85,7 +85,7 @@ class DB{
                 $sql .= $arg[1];
             }
 
-            //echo $sql;
+            // echo $sql;
 
         return $this->pdo->query($sql)->fetchColumn();
     }
@@ -129,12 +129,22 @@ function to($url){
 }
 
 function q($sql){
-    $dsn="mysql:host=localhost;charset=utf8;dbname=db12";
+    $dsn="mysql:host=localhost;charset=utf8;dbname=db02";
     $pdo=new PDO($dsn,'root','');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
 $Total=new DB('total');
+
+// $Total->save(['date'=>date("Y-m-d"), 'total'=>0]);
+// $row = $Total->all();
+// dd($row);
+// $row = $Total->find(2);
+// dd($row);
+// $Total->save(['id'=>1,'date'=>'2026-02-02','total'=>666]);
+// echo $Total->sum('total');
+// $Total->del(1);
+
 $Mem=new DB('member');
 
 if(!isset($_SESSION['total'])){
