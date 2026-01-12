@@ -1,6 +1,6 @@
 <fieldset>
     <legend>會員註冊</legend>
-    <div style="color:red">*請設定您要註冊的帳號及密碼(最長12個字元)</div>
+    <div style='color:red'>*請設定您要註冊的帳號及密碼(最長12個字元)</div>
     <form action="./api/reg.php" method="post">
         <table>
             <tr>
@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="submit" value="註冊">
+                    <input type="button" value="註冊" onclick='reg()'>
                     <input type="reset" value="清除">
                 </td>
                 <td></td>
@@ -37,3 +37,38 @@
         </table>
     </form>
 </fieldset>
+
+<script>
+function reg() {
+    let user = {
+        'acc': $("#acc").val(),
+        'pw': $("#pw").val(),
+        'pw2': $("#pw2").val(),
+        'email': $("#email").val()
+    }
+
+    if (user.acc != '' && user.pw != '' && user.pw2 != '' && user.email != '') {
+        if (user.pw == user.pw2) {
+            $.get('./api/chk_acc.php', {
+                'acc': user.acc
+            }, (chk) => {
+                console.log(chk)
+                if (!parseInt(chk)) {
+                    $.post("./api/reg.php", user, (res) => {
+                        console.log(res)
+                        alert("註冊成功，歡迎加入")
+                        $("form").trigger('reset');
+                    })
+                } else {
+                    alert("帳號重覆")
+                }
+            })
+        } else {
+            alert("密碼錯誤")
+        }
+    } else {
+        alert("不可空白")
+    }
+
+}
+</script>
