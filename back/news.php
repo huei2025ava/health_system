@@ -1,4 +1,4 @@
-<form action="../api/post.php">
+<form action="./api/post.php" method="post">
     <table class="ct" style="width: 80%;margin:auto">
         <tr>
             <td style="width: 10%;">編號</td>
@@ -24,6 +24,7 @@
             </td>
             <td>
                 <input type="checkbox" name="del[]" value="<?= $post['id'] ?>">
+                <input type="hidden" name="id[]" value="<?= $post['id'] ?>">
             </td>
         </tr>
         <?php 
