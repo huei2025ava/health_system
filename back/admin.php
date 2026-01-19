@@ -1,6 +1,3 @@
-<?php 
-include_once "../api/db.php";
-?>
 <fieldset>
     <legend></legend>
     <form action="./api/admin.php" method="post">

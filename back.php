@@ -65,15 +65,15 @@
                         <?php endif?>
                     </span>
                     <div class="">
-                        <?php
-                        $do = $_GET['do'] ?? 'main';
-                        $file = './front/'.$do.".php";
-                        if (file_exists($file)) {
-                            include $file;
-                        } else {
-                            include './front/main.php';
-                        }
-                        ?>
+                        <?php 
+							$do=$_GET['do']??'main';
+							$file="./back/".$do.".php";
+							if(file_exists($file)){
+								include $file;
+							}else{
+								include "./back/main.php";
+							}
+						?>
                     </div>
                 </div>
             </div>
