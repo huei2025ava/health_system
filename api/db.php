@@ -147,6 +147,7 @@ $Total=new DB('total');
 
 $Mem=new DB('member');
 $Post=new DB('post');
+$Que=new DB('que');
 
 if(!isset($_SESSION['total'])){
     $today=$Total->find(['date'=>date("Y-m-d")]);
