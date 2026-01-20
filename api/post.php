@@ -12,5 +12,7 @@ foreach ($_POST['id'] as $id) {
     }
 }
 
-to("../back.php?do=news");
+$p = $_GET['p'] ?? 1;
+
+to("../back.php?do=news&p=$p");
 ?>

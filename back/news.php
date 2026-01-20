@@ -35,17 +35,17 @@
         <?php 
         if ($now-1>0) {
           $prev = $now-1;
-          echo "<a href='?do=news&p=$prev'> < </a>";   
+          echo "<a href='javascript:viod(0)' onclick='saveAndGo($prev)'> < </a>";   
         }
 
-        for ($i=1; $i < $pages; $i++) { 
+        for ($i=1; $i <= $pages; $i++) { 
             $font = ($i==$now)?'24px':'16px';
-            echo "<a href='?do=news&p=$i'> $i </a>";
+            echo "<a href='javascript:viod(0)' onclick='saveAndGo($i)'> $i </a>";
         }
 
         if ($now+1<=$pages) {
             $next = $now+1;
-          echo "<a href='?do=news&p=$next'> > </a>";  
+          echo "<a href='javascript:viod(0)' onclick='saveAndGo($next)'> > </a>";  
         }
         ?>
     </div>
@@ -53,3 +53,11 @@
         <input type="submit" value="確定修改">
     </div>
 </form>
+
+<script>
+function saveAndGo(page) {
+    let form = document.querySelector('form');
+    form.action = "./api/post.php?p=" + page;
+    form.submit();
+}
+</script>
